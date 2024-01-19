@@ -14,7 +14,7 @@ const Navbar = () => {
 
   const classes = {
     navbar: {
-      backgroundColor: "hsl(0, 0%, 98%)",
+      backgroundColor: "#fff",
       boxShadow: "none",
       height: "100px",
       display: "flex",
@@ -75,9 +75,9 @@ const Navbar = () => {
                 Home
               </Typography>
             </Link>
-            <Link href="#experience" underline="none">
+            <Link href="#about" underline="none">
               <Typography sx={classes.linkText} variant="h6">
-                Experience
+                About
               </Typography>
             </Link>
             <Link href="#projects" underline="none">

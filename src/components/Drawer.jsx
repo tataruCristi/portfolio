@@ -42,12 +42,12 @@ const DrawerNav = ({ open, setOpen }) => {
           Home
         </Link>
         <Link
-          href="#experience"
+          href="#about"
           underline="none"
           sx={classes.links}
           onClick={closeDrawer}
         >
-          Experience
+          About
         </Link>
         <Link
           href="#projects"

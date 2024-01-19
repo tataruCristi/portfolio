@@ -28,7 +28,7 @@ const Home = () => {
   };
   return (
     <Container sx={classes.container} id="home">
-      <Grid container spacing={{ xs: 2, sm: 2 }}>
+      <Grid container spacing={{ xs: 2, sm: 2 }} rowSpacing={6}>
         <Grid item xs={4} sm={4} md={3} sx={classes.social}>
           <Social />
         </Grid>
