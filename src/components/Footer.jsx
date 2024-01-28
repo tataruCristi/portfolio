@@ -1,6 +1,6 @@
 import { Container, Typography } from "@mui/material";
 import React from "react";
-import Social from "./Social/Social";
+import Social from "./Social";
 
 const Footer = () => {
   const classes = {

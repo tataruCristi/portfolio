@@ -1,5 +1,5 @@
 import { Container, Typography, Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import Tabs from "@mui/material/Tabs";
@@ -7,14 +7,27 @@ import TabPanel from "@mui/lab/TabPanel";
 import Experience from "../../components/Experience";
 import Skills from "../../components/Skills";
 import Introduction from "../../components/Introduction";
-import TabList from "@mui/lab/TabList";
+import { useElementOnScreen } from "../../hooks/UseElementOnScreen";
+import { ActiveLinksContext } from "../../ActiveLinksContext";
 
 const About = () => {
-  const [tab, setTab] = useState("education");
+  const [tab, setTab] = useState("introduction");
+  const setActiveLink = useContext(ActiveLinksContext);
+
+  const [containerRef, isVisible] = useElementOnScreen({
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5,
+  });
+
+  useEffect(() => {
+    setActiveLink((prev) => ({ ...prev, about: isVisible }));
+  }, [isVisible, setActiveLink]);
 
   const classes = {
     container: {
-      minHeight: "630px",
+      minHeight: "750px",
+      padding: "3rem 0",
     },
     title: {
       textAlign: "center",
@@ -43,11 +56,18 @@ const About = () => {
         color: "hsl(0, 0%, 0%)",
         fontWeight: 600,
       },
+      fontSize: {
+        xs: "0.8rem",
+        sm: "1rem",
+      },
+    },
+    tabPanel: {
+      padding: { xs: "2rem 0", sm: "4rem" },
     },
   };
 
   return (
-    <Container sx={classes.container} id="about">
+    <Container ref={containerRef} sx={classes.container} id="about">
       <Typography sx={classes.title} variant="h4">
         About me
       </Typography>
@@ -59,7 +79,6 @@ const About = () => {
             onChange={(e, value) => setTab(value)}
             aria-label="scrollable auto"
             variant="scrollable"
-            centered
           >
             <Tab sx={classes.tab} label="Introduction" value="introduction" />
             <Tab
@@ -70,13 +89,13 @@ const About = () => {
             <Tab sx={classes.tab} label="Skills" value="skills" />
           </Tabs>
         </Box>
-        <TabPanel value="introduction">
+        <TabPanel value="introduction" sx={classes.tabPanel}>
           <Introduction />
         </TabPanel>
-        <TabPanel value="education" sx={{ padding: { xs: 0, sm: "1rem" } }}>
+        <TabPanel value="education" sx={classes.tabPanel}>
           <Experience />
         </TabPanel>
-        <TabPanel value="skills">
+        <TabPanel value="skills" sx={classes.tabPanel}>
           <Skills />
         </TabPanel>
       </TabContext>
@@ -85,36 +104,3 @@ const About = () => {
 };
 
 export default About;
-
-{
-  /* <TabContext
-value={tab}
-sx={{ maxWidth: "200px" }}
-variant="scrollable"
-scrollButtons="auto"
->
-<Tabs
-  onChange={(e, value) => setTab(value)}
-  aria-label="tabs"
-  centered
-  sx={classes.tabs}
->
-  <Tab sx={classes.tab} label="Introduction" value="introduction" />
-  <Tab
-    sx={classes.tab}
-    label="Education & Experience"
-    value="education"
-  />
-  <Tab sx={classes.tab} label="Skills" value="skills" />
-</Tabs>
-<TabPanel value="introduction">
-  <Introduction />
-</TabPanel>
-<TabPanel value="education">
-  <Experience />
-</TabPanel>
-<TabPanel value="skills">
-  <Skills />
-</TabPanel>
-</TabContext> */
-}

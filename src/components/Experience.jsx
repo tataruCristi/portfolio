@@ -8,9 +8,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import BugReportIcon from "@mui/icons-material/BugReport";
 import { Container, Typography, Paper } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import TimelineOppositeContent, {
-  timelineOppositeContentClasses,
-} from "@mui/lab/TimelineOppositeContent";
+import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import TimelineContent, {
   timelineContentClasses,
 } from "@mui/lab/TimelineContent";
@@ -19,7 +17,7 @@ const Experience = () => {
   const classes = {
     container: {
       padding: {
-        xs: 0,
+        xs: "2rem 0",
         sm: "1rem",
       },
     },
@@ -62,9 +60,7 @@ const Experience = () => {
       minWidth: "100px",
     },
     years: {
-      paddingLeft: {
-        xs: 0,
-      }, // TODO
+      paddingLeft: 0,
     },
   };
 
@@ -74,7 +70,7 @@ const Experience = () => {
     <Container sx={classes.container}>
       <Timeline
         position={isMobile ? "alternate" : "left"}
-        sx={!isMobile && classes.timeline}
+        sx={!isMobile ? classes.timeline : {}}
       >
         <TimelineItem>
           <TimelineOppositeContent>

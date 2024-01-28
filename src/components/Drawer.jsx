@@ -34,7 +34,7 @@ const DrawerNav = ({ open, setOpen }) => {
     >
       <Box sx={classes.container}>
         <Link
-          href="#home"
+          href="#"
           underline="none"
           sx={classes.links}
           onClick={closeDrawer}

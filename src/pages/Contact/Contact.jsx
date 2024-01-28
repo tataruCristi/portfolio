@@ -6,18 +6,80 @@ import {
   Typography,
   Button,
   TextField,
+  Snackbar,
 } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import emailjs from "@emailjs/browser";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useElementOnScreen } from "../../hooks/UseElementOnScreen";
+import { ActiveLinksContext } from "../../ActiveLinksContext";
 
 export const Contact = () => {
+  const [formName, setFormName] = useState("");
+  const [formEmail, setFormEmail] = useState("");
+  const [formMessage, setFormMessage] = useState("");
+  const [confirmation, setConfirmation] = useState(false);
+  const [message, setMessage] = useState("");
+  const [progress, setProgress] = useState(false);
+  const setActiveLink = useContext(ActiveLinksContext);
+
+  const [containerRef, isVisible] = useElementOnScreen({
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5,
+  });
+
+  useEffect(() => {
+    setActiveLink((prev) => ({ ...prev, contact: isVisible }));
+  }, [isVisible, setActiveLink]);
+
+  const handleClose = () => {
+    setConfirmation(false);
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setProgress(true);
+
+    emailjs
+      .send(
+        "service_wl580aj",
+        "template_riy0c5s",
+        {
+          form_name: formName,
+          form_email: formEmail,
+          form_message: formMessage,
+        },
+        "1z-Vo-ydDEPTKsEC1"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setMessage("Message sent succesfully!");
+          setProgress(false);
+          setConfirmation(true);
+        },
+        (error) => {
+          console.log(error.text);
+          setMessage("Error. Please try again!");
+          setProgress(false);
+          setConfirmation(true);
+        }
+      );
+
+    setFormName("");
+    setFormEmail("");
+    setFormMessage("");
+  };
+
   const classes = {
     container: {
-      padding: "5rem",
+      padding: "3rem 0",
     },
     title: {
       textAlign: "center",
@@ -29,6 +91,10 @@ export const Contact = () => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      maringTop: {
+        xs: "1rem",
+        sm: 0,
+      },
     },
     card: {
       textAlign: "center",
@@ -58,12 +124,13 @@ export const Contact = () => {
     formContainer: {
       display: "flex",
       flexDirection: "column",
+      position: "relative",
       alignItems: "center",
     },
     input: {
       margin: "1rem 0",
       width: {
-        xs: "100%",
+        xs: "80%",
         sm: "70%",
       },
       radius: "5rem",
@@ -80,6 +147,7 @@ export const Contact = () => {
         backgroundColor: "hsl(0, 0%, 0%)",
       },
       fontFamily: "inherit",
+      marginTop: "2rem",
     },
     buttonIcon: {
       marginLeft: "0.5rem",
@@ -87,12 +155,12 @@ export const Contact = () => {
   };
 
   return (
-    <Container id="contact" sx={classes.container}>
+    <Container ref={containerRef} id="contact" sx={classes.container}>
       <Typography variant="h4" sx={classes.title}>
         Get in touch
       </Typography>
       <Grid container>
-        <Grid item xs={12} sm={6}>
+        <Grid item={true} xs={12} sm={6}>
           <Typography sx={classes.cardTitle} variant="h5">
             Talk to me
           </Typography>
@@ -137,32 +205,38 @@ export const Contact = () => {
             </Paper>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={6} sx={{ xs: 12 }}>
+        <Grid item={true} xs={12} sm={6} sx={{ xs: 12 }}>
           <Typography sx={classes.cardTitle} variant="h5">
             Write me your project
           </Typography>
           <Box sx={classes.formContainer} component="form">
             <TextField
               sx={classes.input}
-              id="form-name"
               label="Name"
+              name="user_name"
               placeholder="Enter your name"
+              value={formName}
+              onChange={(e) => setFormName(e.target.value)}
             />
             <TextField
               sx={classes.input}
-              id="form-email"
               label="Email"
+              name="user_email"
               placeholder="Enter your email"
+              value={formEmail}
+              onChange={(e) => setFormEmail(e.target.value)}
             />
             <TextField
               sx={classes.input}
               multiline
-              id="form-message"
               label="Message"
+              name="user_message"
               rows={5}
               placeholder="Describe your project"
+              value={formMessage}
+              onChange={(e) => setFormMessage(e.target.value)}
             />
-            <Button sx={classes.button}>
+            <Button sx={classes.button} onClick={sendEmail}>
               Send Message
               <svg
                 style={classes.buttonIcon}
@@ -182,50 +256,21 @@ export const Contact = () => {
                 ></path>
               </svg>
             </Button>
+            {progress && (
+              <CircularProgress
+                sx={{ position: "absolute", top: "50%", left: "50%" }}
+              />
+            )}
           </Box>
         </Grid>
       </Grid>
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        open={confirmation}
+        autoHideDuration={5000}
+        onClose={handleClose}
+        message={message}
+      />
     </Container>
   );
 };
-// min 2:32
-//  <h2 className='section__title'>Get in touch</h2>
-//  <span className='section__subtitle'>Contact me</span>
-
-//  <div className='contact__container container grid'>
-//      <div className='contact__content'>
-//          <h3 className='contact__title'>Talk to me</h3>
-//          <div className="contact__info">
-//              <div className="contact__card">
-//                  <i className='bx bx-mail-send contact__card-icon'></i>
-//                  <h3 className='contact__card-title'>Email</h3>
-//                  <span className='contact__card-data'>tataru.cristi5@gmail.com</span>
-//                  <a href="" className="contact_button">
-//                      Write me <i className="bx bx-right-arrow-alt contact_button-icon"></i>
-//                  </a>
-//              </div>
-
-//              <div className="contact__card">
-//                  <i className='bx bxl-whatsup contact__card-icon'></i>
-//                  <h3 className='contact__card-title'>Whatsapp</h3>
-//                  <span className='contact__card-data'>0757138228</span>
-//                  <a href="" className="contact_button">
-//                      Write me <i className="bx bx-right-arrow-alt contact_button-icon"></i>
-//                  </a>
-//              </div>
-
-//              <div className="contact__card">
-//                  <i className='bx bxl-messenger contact__card-icon'></i>
-//                  <h3 className='contact__card-title'>Linkedin</h3>
-//                  <span className='contact__card-data'>in/tataru-cristi/</span>
-//                  <a href="" className="contact_button">
-//                      Write me <i className="bx bx-right-arrow-alt contact_button-icon"></i>
-//                  </a>
-//              </div>
-//          </div>
-//      </div>
-//      <div className='contact__content'>
-//          <h3 className="contact_title">Write me your project</h3>
-
-//      </div>
-//  </div>

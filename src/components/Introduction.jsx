@@ -5,29 +5,23 @@ import DownloadIcon from "@mui/icons-material/Download";
 
 const Introduction = () => {
   const classes = {
-    container: {
-      display: "flex",
-      flexDirection: {
-        xs: "column",
-        sm: "row",
-      },
-    },
     image: {
       background: `url(${Picture})`,
       height: {
         xs: "200px",
-        sm: "250px",
-        md: "300px",
-        lg: "400px",
+        sm: "230px",
+        md: "280px",
+        lg: "350px",
       },
       width: {
         xs: "200px",
-        sm: "250px",
-        md: "300px",
-        lg: "400px",
+        sm: "230px",
+        md: "280px",
+        lg: "350px",
       },
       backgroundSize: "cover",
       margin: "auto",
+      borderRadius: "1rem",
     },
     grid: {
       display: "flex",
@@ -37,6 +31,15 @@ const Introduction = () => {
     },
     description: {
       fontFamily: "inherit",
+      fontSize: {
+        xs: "0.9rem",
+        sm: "1rem",
+        md: "1.1rem",
+      },
+      padding: {
+        xs: "2rem 3rem",
+        sm: "0 1.5rem",
+      },
     },
     button: {
       backgroundColor: "hsl(0, 0%, 20%)",
@@ -48,7 +51,7 @@ const Introduction = () => {
       },
       borderRadius: "1rem",
       margin: {
-        xs: "1rem",
+        xs: "2rem",
         sm: "3rem",
       },
       fontWeight: "500",
@@ -63,15 +66,16 @@ const Introduction = () => {
   };
   return (
     <Grid container spacing={{ xs: 0, sm: 2 }}>
-      <Grid item xs={12} sm={6}>
+      <Grid item={true} xs={12} sm={6}>
         <Box sx={classes.image} />
       </Grid>
-      <Grid item xs={12} sm={6} sx={classes.grid}>
+      <Grid item={true} xs={12} sm={6} sx={classes.grid}>
         <Typography sx={classes.description}>
-          Write some introduction here Lorem ipsum dolor sit, amet consectetur
-          adipisicing elit. Explicabo eos commodi amet in corporis minima iure,
-          vitae voluptatibus soluta, nisi quasi minus velit excepturi rerum
-          eligendi rem expedita cumque facere.
+          After finishing studies I started to work at Continental as a System
+          Test Enginner. After a couple of years I wanted to try something
+          different, so I started to learn web development in my spare time. In
+          2022 I got the opportunity to work on a web development project. I am
+          now capable of stating that I have found what I was meant to do.
         </Typography>
         <Button
           sx={classes.button}

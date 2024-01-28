@@ -1,18 +1,10 @@
-import { Container, Paper, Box } from "@mui/material";
+import { Container, Paper } from "@mui/material";
 import React from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
-import JavascriptIcon from "@mui/icons-material/Javascript";
-import HtmlIcon from "@mui/icons-material/Html";
-import CssIcon from "@mui/icons-material/Css";
-import { ReactComponent as ReactSvg } from "../assets/react-svg.svg";
-import { ReactComponent as HtmlSvg } from "../assets/html-5-svg.svg";
-import { ReactComponent as CssSvg } from "../assets/css-3-svg.svg";
-import { ReactComponent as JSSvg } from "../assets/javascript-svg.svg";
-import { ReactComponent as TypescriptSvg } from "../assets/typescript-svg.svg";
-import { ReactComponent as MaterialSvg } from "../assets/material-ui-svg.svg";
+import { skillsList1, skillsList2 } from "../helpers/SkillsList";
 
 const Skills = () => {
   const classes = {
@@ -23,20 +15,19 @@ const Skills = () => {
         sm: "row",
       },
       justifyContent: "space-evenly",
-      // alignItems: "center",
-      paddingTop: "4rem",
     },
     paper: {
       padding: {
         xs: "1rem",
         sm: "2rem",
-        md: "3rem",
+        md: "2rem",
       },
       display: "flex",
       flexDirection: {
         xs: "column",
         sm: "row",
       },
+      margin: "0 2rem",
     },
     title: {
       fontFamily: "inherit",
@@ -45,7 +36,7 @@ const Skills = () => {
     list: {
       margin: {
         xs: "auto",
-        sm: "2rem",
+        sm: "1rem",
       },
       "& .MuiListItemText-primary": {
         fontWeight: "500",
@@ -65,44 +56,36 @@ const Skills = () => {
     <Container sx={classes.container}>
       <Paper sx={classes.paper}>
         <List sx={classes.list}>
-          <ListItem>
-            <ListItemAvatar>
-              <HtmlSvg style={classes.svg} />
-            </ListItemAvatar>
-            <ListItemText primary="HTML" secondary="Intermediary" />
-          </ListItem>
-          <ListItem>
-            <ListItemAvatar>
-              <CssSvg style={classes.svg} />
-            </ListItemAvatar>
-            <ListItemText primary="CSS" secondary="Intermediary" />
-          </ListItem>
-          <ListItem>
-            <ListItemAvatar>
-              <JSSvg style={classes.svg} />
-            </ListItemAvatar>
-            <ListItemText primary="Javascript" secondary="Intermediary" />
-          </ListItem>
+          {skillsList1.map((skill) => {
+            const Logo = skill.logo;
+            return (
+              <ListItem key={skill.name}>
+                <ListItemAvatar>
+                  <Logo style={classes.svg} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={skill.name}
+                  secondary={skill.experience}
+                />
+              </ListItem>
+            );
+          })}
         </List>
         <List sx={classes.list}>
-          <ListItem>
-            <ListItemAvatar>
-              <ReactSvg style={classes.svg} />
-            </ListItemAvatar>
-            <ListItemText primary="React" secondary="Intermediary" />
-          </ListItem>
-          <ListItem>
-            <ListItemAvatar>
-              <TypescriptSvg style={classes.svg} />
-            </ListItemAvatar>
-            <ListItemText primary="Typescript" secondary="Intermediary" />
-          </ListItem>
-          <ListItem>
-            <ListItemAvatar>
-              <MaterialSvg style={classes.svg} />
-            </ListItemAvatar>
-            <ListItemText primary="Material UI" secondary="Intermediary" />
-          </ListItem>
+          {skillsList2.map((skill) => {
+            const Logo = skill.logo;
+            return (
+              <ListItem key={skill.name}>
+                <ListItemAvatar>
+                  <Logo style={classes.svg} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary={skill.name}
+                  secondary={skill.experience}
+                />
+              </ListItem>
+            );
+          })}
         </List>
       </Paper>
     </Container>

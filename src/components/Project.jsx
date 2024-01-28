@@ -1,33 +1,48 @@
-import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Project = ({ project }) => {
-  return (
-    // <Paper sx={{ textAlign: "center", height: "200px", width: "300px" }}>
-    //   <a href={project.link}>{project.name}</a>
-    // </Paper>
+  const isMobile = useMediaQuery("(max-width:600px)");
 
-    <Card sx={{ maxWidth: 345 }}>
+  const classes = {
+    container: {
+      width: {
+        xs: "300px",
+        sm: "300px",
+        md: "345px",
+      },
+    },
+    image: {},
+    description: {
+      variant: {
+        xs: "body2",
+        sm: "h6",
+      },
+    },
+  };
+
+  return (
+    <Card sx={classes.container}>
       <CardActionArea href={project.link} target="_blank">
         <CardMedia
           component="img"
           height="200"
           image={project.image}
-          alt="green iguana"
+          alt="project preview"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {project.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis
-            minima iusto corrupti ullam veritatis aliquid repellat! Consequatur
-            ea qui molestias accusamus. Laboriosam reprehenderit possimus
-            laudantium tempora voluptas rem alias optio!
+          <Typography
+            variant={isMobile ? "body2" : "body1"}
+            sx={classes.description}
+          >
+            {project.description}
           </Typography>
         </CardContent>
       </CardActionArea>

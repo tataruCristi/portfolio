@@ -6,7 +6,7 @@ import DrawerNav from "./Drawer.jsx";
 import MenuIcon from "@mui/icons-material/Menu";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const Navbar = () => {
+const Navbar = ({ activeLink }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const theme = useTheme();
@@ -43,6 +43,10 @@ const Navbar = () => {
         fontSize: "1rem",
       },
     },
+    activeLink: {
+      color: "hsl(0, 0%, 0%)",
+      fontWeight: "600",
+    },
     logo: {
       flexGrow: "1",
       color: "hsl(0, 0%, 0%)",
@@ -69,24 +73,53 @@ const Navbar = () => {
           <Typography sx={classes.logo} variant="h5">
             Tataru
           </Typography>
+
           <Box sx={classes.links}>
-            <Link href="#home" underline="none">
-              <Typography sx={classes.linkText} variant="h6">
+            <Link href="#" underline="none">
+              <Typography
+                sx={
+                  activeLink.home
+                    ? { ...classes.linkText, ...classes.activeLink }
+                    : classes.linkText
+                }
+                variant="h6"
+              >
                 Home
               </Typography>
             </Link>
             <Link href="#about" underline="none">
-              <Typography sx={classes.linkText} variant="h6">
+              <Typography
+                sx={
+                  activeLink.about
+                    ? { ...classes.linkText, ...classes.activeLink }
+                    : classes.linkText
+                }
+                variant="h6"
+              >
                 About
               </Typography>
             </Link>
             <Link href="#projects" underline="none">
-              <Typography sx={classes.linkText} variant="h6">
+              <Typography
+                sx={
+                  activeLink.projects
+                    ? { ...classes.linkText, ...classes.activeLink }
+                    : classes.linkText
+                }
+                variant="h6"
+              >
                 Projects
               </Typography>
             </Link>
             <Link href="#contact" underline="none">
-              <Typography sx={classes.linkText} variant="h6">
+              <Typography
+                sx={
+                  activeLink.contact
+                    ? { ...classes.linkText, ...classes.activeLink }
+                    : classes.linkText
+                }
+                variant="h6"
+              >
                 Contact
               </Typography>
             </Link>
