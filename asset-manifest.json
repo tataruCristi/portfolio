@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/portfolio/static/css/main.2e71bede.css",
-    "main.js": "/portfolio/static/js/main.b9d61476.js",
+    "main.css": "/portfolio/static/css/main.a53b82af.css",
+    "main.js": "/portfolio/static/js/main.37ad647b.js",
     "static/media/profile.jpg": "/portfolio/static/media/profile.5b4272f5769dc3732551.jpg",
     "static/media/todolist-vert.png": "/portfolio/static/media/todolist-vert.9b3d52ca49cf76c0b546.png",
     "static/media/Tic_tac_toe.svg.png": "/portfolio/static/media/Tic_tac_toe.svg.1da37567a3b650d34873.png",
@@ -20,11 +20,11 @@
     "static/media/javascript-svg.svg": "/portfolio/static/media/javascript-svg.7bb08cdbe94fc2dfc1b51be8c2dae551.svg",
     "static/media/css-3-svg.svg": "/portfolio/static/media/css-3-svg.315b8fdb9dbf75ae965b80bf368895cd.svg",
     "static/media/html-5-svg.svg": "/portfolio/static/media/html-5-svg.0107c93943a8f415b5db64ebb0a9d12d.svg",
-    "main.2e71bede.css.map": "/portfolio/static/css/main.2e71bede.css.map",
-    "main.b9d61476.js.map": "/portfolio/static/js/main.b9d61476.js.map"
+    "main.a53b82af.css.map": "/portfolio/static/css/main.a53b82af.css.map",
+    "main.37ad647b.js.map": "/portfolio/static/js/main.37ad647b.js.map"
   },
   "entrypoints": [
-    "static/css/main.2e71bede.css",
-    "static/js/main.b9d61476.js"
+    "static/css/main.a53b82af.css",
+    "static/js/main.37ad647b.js"
   ]
 }
