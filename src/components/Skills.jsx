@@ -1,12 +1,15 @@
 import { Container, Paper } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import { skillsList1, skillsList2 } from "../helpers/SkillsList";
+import { DarkModeContext } from "../DarkModeContext";
 
 const Skills = () => {
+  const { darkMode } = useContext(DarkModeContext);
+
   const classes = {
     container: {
       display: "flex",
@@ -28,6 +31,8 @@ const Skills = () => {
         sm: "row",
       },
       margin: "0 2rem",
+      backgroundColor: darkMode ? "rgb(24, 26, 27)" : "#fff",
+      color: darkMode ? "rgb(200, 195, 188)" : "rgba(0, 0, 0, 0.87)",
     },
     title: {
       fontFamily: "inherit",
@@ -41,11 +46,15 @@ const Skills = () => {
       "& .MuiListItemText-primary": {
         fontWeight: "500",
       },
+      "& .MuiListItemText-secondary": {
+        color: darkMode ? "rgb(200, 195, 188)" : "rgba(0, 0, 0, 0.87)",
+      },
       padding: {
         xs: 0,
         sm: "1rem",
       },
     },
+    listText: {},
     svg: {
       width: "35px",
       height: "35px",

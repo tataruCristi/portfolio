@@ -12,8 +12,12 @@ import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import TimelineContent, {
   timelineContentClasses,
 } from "@mui/lab/TimelineContent";
+import { DarkModeContext } from "../DarkModeContext";
+import { useContext } from "react";
 
 const Experience = () => {
+  const { darkMode } = useContext(DarkModeContext);
+
   const classes = {
     container: {
       padding: {
@@ -42,6 +46,8 @@ const Experience = () => {
         sm: "1rem",
       },
       maxWidth: "350px",
+      backgroundColor: darkMode ? "rgb(24, 26, 27)" : "#fff",
+      color: darkMode ? "rgb(200, 195, 188)" : "rgba(0, 0, 0, 0.87)",
     },
     paperLeft: {
       float: {

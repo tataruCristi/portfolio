@@ -3,8 +3,11 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { DarkModeContext } from "../DarkModeContext";
+import { useContext } from "react";
 
 const Social = ({ type }) => {
+  const { darkMode } = useContext(DarkModeContext);
   const homeStyle = {
     container: {
       display: "flex",
@@ -17,10 +20,10 @@ const Social = ({ type }) => {
       alignItems: "center",
     },
     link: {
-      color: "hsl(0, 0%, 20%)",
+      color: darkMode ? "rgb(200, 195, 188)" : "hsl(0, 0%, 20%)",
       marginTop: "1rem",
       "&:hover": {
-        color: "hsl(0, 0%, 0%)",
+        color: darkMode ? "#eee" : "hsl(0, 0%, 0%)",
       },
     },
   };
@@ -31,10 +34,10 @@ const Social = ({ type }) => {
       justifyContent: "center",
     },
     link: {
-      color: "hsl(0, 0%, 20%)",
+      color: darkMode ? "#d6d6d6" : "hsl(0, 0%, 20%)",
       margin: "1rem",
       "&:hover": {
-        color: "hsl(0, 0%, 0%)",
+        color: darkMode ? "#fff" : "hsl(0, 0%, 0%)",
       },
     },
   };

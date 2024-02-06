@@ -9,10 +9,12 @@ import Skills from "../../components/Skills";
 import Introduction from "../../components/Introduction";
 import { useElementOnScreen } from "../../hooks/UseElementOnScreen";
 import { ActiveLinksContext } from "../../ActiveLinksContext";
+import { DarkModeContext } from "../../DarkModeContext";
 
 const About = () => {
   const [tab, setTab] = useState("introduction");
   const setActiveLink = useContext(ActiveLinksContext);
+  const { darkMode } = useContext(DarkModeContext);
 
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
@@ -42,18 +44,18 @@ const About = () => {
     },
     tabs: {
       "& .MuiTabs-indicator": {
-        backgroundColor: "hsl(0, 0%, 0%)",
+        backgroundColor: darkMode ? "rgb(232, 230, 227)" : "hsl(0, 0%, 0%)",
       },
     },
     tab: {
       fontFamily: "inherit",
-      color: "hsl(0, 0%, 20%)",
+      color: darkMode ? "rgb(200, 195, 188)" : "hsl(0, 0%, 20%)",
       margin: {
         xs: "0",
         md: "0 2rem",
       },
       "&.Mui-selected": {
-        color: "hsl(0, 0%, 0%)",
+        color: darkMode ? "rgb(232, 230, 227)" : "hsl(0, 0%, 0%)",
         fontWeight: 600,
       },
       fontSize: {

@@ -145,3 +145,7 @@
     height: 22px;
   }
 }
+
+.dark {
+  color: rgb(200, 195, 188);
+}

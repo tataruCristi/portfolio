@@ -8,61 +8,11 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useElementOnScreen } from "../../hooks/UseElementOnScreen";
 import { ActiveLinksContext } from "../../ActiveLinksContext";
 import ContactForm from "../../components/ContactForm";
-
-const classes = {
-  container: {
-    padding: "3rem 0",
-  },
-  title: {
-    textAlign: "center",
-    fontFamily: "inherit",
-    fontWeight: "600",
-    marginBottom: "3rem",
-  },
-  cardContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    maringTop: {
-      xs: "1rem",
-      sm: 0,
-    },
-  },
-  card: {
-    textAlign: "center",
-    width: "300px",
-    height: "150px",
-    margin: "1rem 0",
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-  },
-  cardTitle: {
-    textAlign: "center",
-    fontFamily: "inherit",
-    fontWeight: "500",
-    marginBottom: "1rem",
-  },
-  cardButton: {
-    fontFamily: "inherit",
-    color: "hsl(0, 0%, 20%)",
-    borderRadius: "1rem",
-    "&:hover": {
-      color: "hsl(0, 0%, 0%)",
-      backgroundColor: "hsl(0, 0%, 95%)",
-    },
-  },
-  formContainer: {
-    display: "flex",
-    flexDirection: "column",
-    position: "relative",
-    alignItems: "center",
-  },
-};
+import { DarkModeContext } from "../../DarkModeContext";
 
 export const Contact = () => {
   const setActiveLink = useContext(ActiveLinksContext);
+  const { darkMode } = useContext(DarkModeContext);
 
   const [containerRef, isVisible] = useElementOnScreen({
     root: null,
@@ -73,6 +23,62 @@ export const Contact = () => {
   useEffect(() => {
     setActiveLink((prev) => ({ ...prev, contact: isVisible }));
   }, [isVisible, setActiveLink]);
+
+  const classes = {
+    container: {
+      padding: "3rem 0",
+    },
+    title: {
+      textAlign: "center",
+      fontFamily: "inherit",
+      fontWeight: "600",
+      marginBottom: "3rem",
+    },
+    cardContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      maringTop: {
+        xs: "1rem",
+        sm: 0,
+      },
+    },
+    card: {
+      textAlign: "center",
+      width: "300px",
+      height: "150px",
+      margin: "1rem 0",
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "column",
+      justifyContent: "space-evenly",
+      backgroundColor: darkMode ? "rgb(24, 26, 27)" : "#fff",
+      color: "inherit",
+    },
+    cardTitle: {
+      textAlign: "center",
+      fontFamily: "inherit",
+      fontWeight: "500",
+      marginBottom: "1rem",
+      maxWidth: "400px",
+      margin: "auto",
+    },
+    cardButton: {
+      fontFamily: "inherit",
+      color: darkMode ? "rgb(200, 195, 188)" : "hsl(0, 0%, 20%)",
+      borderRadius: "1rem",
+      "&:hover": {
+        color: darkMode ? "rgb(232, 230, 227)" : "hsl(0, 0%, 0%)",
+        backgroundColor: darkMode ? "rgb(31, 34, 35)" : "hsl(0, 0%, 95%)",
+      },
+    },
+    formContainer: {
+      display: "flex",
+      flexDirection: "column",
+      position: "relative",
+      alignItems: "center",
+    },
+  };
 
   return (
     <Container ref={containerRef} id="contact" sx={classes.container}>
@@ -127,7 +133,7 @@ export const Contact = () => {
         </Grid>
         <Grid item={true} xs={12} sm={6} sx={{ xs: 12 }}>
           <Typography sx={classes.cardTitle} variant="h5">
-            Write me your project
+            Is there a project that I can help you with?
           </Typography>
           <ContactForm />
         </Grid>

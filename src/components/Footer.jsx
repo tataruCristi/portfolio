@@ -1,16 +1,19 @@
 import { Container, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import Social from "./Social";
+import { DarkModeContext } from "../DarkModeContext";
 
 const Footer = () => {
+  const { darkMode } = useContext(DarkModeContext);
+
   const classes = {
     container: {
-      backgroundColor: "#fff",
+      backgroundColor: darkMode ? "rgb(24, 26, 27)" : "#fff", //"#161618"
       padding: "1rem 0",
     },
     title: {
       textAlign: "center",
-      color: "hsl(0, 0%, 0%)",
+      color: darkMode ? "rgb(232, 230, 227)" : "hsl(0, 0%, 0%)", //#d6d6d6
       fontWeight: "600",
       fontFamily: "Satisfy, cursive",
     },

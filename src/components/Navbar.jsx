@@ -1,20 +1,23 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Typography from "@mui/material/Typography";
 import { AppBar, IconButton, Toolbar, Box, Link } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import DrawerNav from "./Drawer.jsx";
 import MenuIcon from "@mui/icons-material/Menu";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import ThemeSwitch from "./ThemeSwitch.jsx";
+import { DarkModeContext } from "../DarkModeContext.js";
 
 const Navbar = ({ activeLink }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const { darkMode } = useContext(DarkModeContext);
 
   const theme = useTheme();
   const showDrawer = useMediaQuery("(min-width:600px)");
 
   const classes = {
     navbar: {
-      backgroundColor: "#fff",
+      backgroundColor: darkMode ? "rgb(24, 26, 27)" : "#fff",
       boxShadow: "none",
       height: "100px",
       display: "flex",
@@ -35,21 +38,21 @@ const Navbar = ({ activeLink }) => {
     linkText: {
       margin: "2rem",
       fontFamily: "inherit",
-      color: "hsl(0, 0%, 20%)",
+      color: darkMode ? "rgb(200, 195, 188)" : "hsl(0, 0%, 20%)",
       "&:hover": {
-        color: "hsl(0, 0%, 0%)",
+        color: darkMode ? "rgb(232, 230, 227)" : "hsl(0, 0%, 0%)",
       },
       [theme.breakpoints.down("md")]: {
         fontSize: "1rem",
       },
     },
     activeLink: {
-      color: "hsl(0, 0%, 0%)",
+      color: darkMode ? "rgb(232, 230, 227)" : "hsl(0, 0%, 0%)",
       fontWeight: "600",
     },
     logo: {
       flexGrow: "1",
-      color: "hsl(0, 0%, 0%)",
+      color: darkMode ? "rgb(232, 230, 227)" : "hsl(0, 0%, 0%)",
       fontWeight: "600",
       fontFamily: "Satisfy, cursive",
       display: {
@@ -137,6 +140,7 @@ const Navbar = ({ activeLink }) => {
           </IconButton>
         </Toolbar>
         {!showDrawer && <DrawerNav open={openDrawer} setOpen={setOpenDrawer} />}
+        {showDrawer && <ThemeSwitch />}
       </AppBar>
     </>
   );

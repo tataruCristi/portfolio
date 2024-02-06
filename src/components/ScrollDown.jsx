@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { Link, Box } from "@mui/material";
+import { DarkModeContext } from "../DarkModeContext";
 
 function ScrollDown() {
+  const { darkMode } = useContext(DarkModeContext);
+
   const classes = {
     container: {
       display: {
@@ -17,7 +20,7 @@ function ScrollDown() {
     <Box sx={classes.container} className="home__scroll">
       <Link
         href="#about"
-        className="home_scroll-button button--flex"
+        className="home_scroll-button button--flex dark"
         underline="none"
       >
         <svg
@@ -41,7 +44,7 @@ function ScrollDown() {
             d="M123.359,79.775l0,72.843"
             style={{
               fill: "none",
-              stroke: "hsl(0, 0%, 46%)",
+              stroke: darkMode ? "rgb(200, 195, 188)" : "hsl(0, 0%, 46%)",
               strokeWidth: "20px",
             }}
           ></path>
@@ -50,13 +53,21 @@ function ScrollDown() {
             d="M236.717,123.359c0,-62.565 -50.794,-113.359 -113.358,-113.359c-62.565,0 -113.359,50.794 -113.359,113.359l0,143.237c0,62.565 50.794,113.359 113.359,113.359c62.564,0 113.358,-50.794 113.358,-113.359l0,-143.237Z"
             style={{
               fill: "none",
-              stroke: "hsl(0, 0%, 46%)",
+              stroke: darkMode ? "rgb(200, 195, 188)" : "hsl(0, 0%, 46%)",
               strokeWidth: "20px",
             }}
           ></path>
         </svg>
-        <span className="home__scroll-name">Scroll Down</span>
-        <ArrowDownwardIcon className="home__scroll-arrow" />
+        <span
+          className={darkMode ? "home__scroll-name dark" : "home__scroll-name"}
+        >
+          Scroll Down
+        </span>
+        <ArrowDownwardIcon
+          className={
+            darkMode ? "home__scroll-arrow dark" : "home__scroll-arrow"
+          }
+        />
       </Link>
     </Box>
   );

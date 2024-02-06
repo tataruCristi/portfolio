@@ -4,9 +4,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { DarkModeContext } from "../DarkModeContext";
+import { useContext } from "react";
 
 const Project = ({ project }) => {
   const isMobile = useMediaQuery("(max-width:600px)");
+  const { darkMode } = useContext(DarkModeContext);
 
   const classes = {
     container: {
@@ -15,6 +18,8 @@ const Project = ({ project }) => {
         sm: "300px",
         md: "345px",
       },
+      backgroundColor: darkMode ? "rgb(24, 26, 27)" : "#fff",
+      color: darkMode ? "rgb(200, 195, 188)" : "rgba(0, 0, 0, 0.87)",
     },
     image: {},
     description: {

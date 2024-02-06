@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
 import emailjs from "@emailjs/browser";
 import Alert from "@mui/material/Alert";
+import { DarkModeContext } from "../DarkModeContext";
 
 const classes = {
   formContainer: {
@@ -20,6 +21,7 @@ const classes = {
       xs: "80%",
       sm: "70%",
     },
+    color: "red",
     radius: "5rem",
   },
   button: {
@@ -39,6 +41,28 @@ const classes = {
   buttonIcon: {
     marginLeft: "0.5rem",
   },
+  inputDark: {
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "rgb(200, 195, 188)",
+      },
+      "&:hover fieldset": {
+        borderColor: "rgb(232, 230, 227)",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "#fff",
+      },
+    },
+    "& .MuiInputBase-input": {
+      color: "rgb(200, 195, 188)",
+    },
+    "& .MuiOutlinedInput-notchedOutline": {
+      color: "rgb(200, 195, 188)",
+    },
+    "& .MuiFormLabel-root": {
+      color: "rgb(200, 195, 188)",
+    },
+  },
 };
 
 const ContactForm = () => {
@@ -49,6 +73,7 @@ const ContactForm = () => {
   const [success, setSuccess] = useState(false);
   const [progress, setProgress] = useState(false);
   const [error, setError] = useState(false);
+  const { darkMode } = useContext(DarkModeContext);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -100,8 +125,10 @@ const ContactForm = () => {
   return (
     <Box sx={classes.formContainer} component="form">
       <TextField
-        sx={classes.input}
-        label="Name"
+        sx={
+          darkMode ? { ...classes.input, ...classes.inputDark } : classes.input
+        }
+        label="Your Name"
         name="user_name"
         placeholder="Enter your name"
         value={formName}
@@ -110,8 +137,10 @@ const ContactForm = () => {
         error={error && formName.length === 0}
       />
       <TextField
-        sx={classes.input}
-        label="Email"
+        sx={
+          darkMode ? { ...classes.input, ...classes.inputDark } : classes.input
+        }
+        label="Your email"
         name="user_email"
         placeholder="Enter your email"
         value={formEmail}
@@ -120,12 +149,14 @@ const ContactForm = () => {
         error={error && formEmail.length === 0}
       />
       <TextField
-        sx={classes.input}
+        sx={
+          darkMode ? { ...classes.input, ...classes.inputDark } : classes.input
+        }
         multiline
-        label="Message"
+        label="Project description"
         name="user_message"
         rows={5}
-        placeholder="Describe your project"
+        placeholder="Describe the project"
         value={formMessage}
         onChange={(e) => setFormMessage(e.target.value)}
         helperText={error && formMessage.length === 0 ? "Enter a message" : ""}

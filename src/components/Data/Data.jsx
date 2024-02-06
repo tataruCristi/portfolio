@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./style.css";
 import { Box } from "@mui/material";
+import { DarkModeContext } from "../../DarkModeContext";
 
 function Data() {
+  const { darkMode } = useContext(DarkModeContext);
+
   const classes = {
     container: {
       padding: {
@@ -16,7 +19,7 @@ function Data() {
 
   return (
     <Box className="home__data" sx={classes.container}>
-      <h1 className="home__title">
+      <h1 className={darkMode ? "home__title dark" : "home__title"}>
         Tataru Cristi
         <svg
           width="36"
@@ -69,7 +72,9 @@ function Data() {
         </svg>
       </h1>
 
-      <h3 className="home__subtitle">Web Developer</h3>
+      <h3 className={darkMode ? "home__subtitle dark" : "home__subtitle"}>
+        Web Developer
+      </h3>
       <p className="home__description">
         Hello! I am a self taught web developer based in Iasi. I am seeking
         exciting projects that will allow me to continue my development.
