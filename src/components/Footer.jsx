@@ -8,12 +8,15 @@ const Footer = () => {
 
   const classes = {
     container: {
-      backgroundColor: darkMode ? "rgb(24, 26, 27)" : "#fff", //"#161618"
+      backgroundColor: darkMode ? "rgb(24, 26, 27)" : "#fff",
       padding: "1rem 0",
+      "&.MuiContainer-root": {
+        maxWidth: "100%",
+      },
     },
     title: {
       textAlign: "center",
-      color: darkMode ? "rgb(232, 230, 227)" : "hsl(0, 0%, 0%)", //#d6d6d6
+      color: darkMode ? "rgb(232, 230, 227)" : "hsl(0, 0%, 0%)",
       fontWeight: "600",
       fontFamily: "Satisfy, cursive",
     },

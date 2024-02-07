@@ -23,6 +23,20 @@ const classes = {
     },
     color: "red",
     radius: "5rem",
+    "& .MuiInputLabel-root": {
+      color: "hsl(0, 0%, 30%)",
+      "&.Mui-focused": {
+        color: "hsl(0, 0%, 30%)",
+      },
+    },
+    "& .MuiOutlinedInput-root": {
+      "&.Mui-focused fieldset": {
+        borderColor: "hsl(0, 0%, 30%)",
+      },
+    },
+    "& .Mui-focused": {
+      color: "hsl(0, 0%, 20%)",
+    },
   },
   button: {
     display: "inline-flex",
@@ -61,6 +75,15 @@ const classes = {
     },
     "& .MuiFormLabel-root": {
       color: "rgb(200, 195, 188)",
+    },
+    "& .Mui-focused": {
+      color: "rgb(200, 195, 188)",
+    },
+    "& .MuiInputLabel-root": {
+      color: "rgb(200, 195, 188)",
+      "&.Mui-focused": {
+        color: "rgb(200, 195, 188)",
+      },
     },
   },
 };
@@ -128,7 +151,7 @@ const ContactForm = () => {
         sx={
           darkMode ? { ...classes.input, ...classes.inputDark } : classes.input
         }
-        label="Your Name"
+        label="Name"
         name="user_name"
         placeholder="Enter your name"
         value={formName}
@@ -140,7 +163,7 @@ const ContactForm = () => {
         sx={
           darkMode ? { ...classes.input, ...classes.inputDark } : classes.input
         }
-        label="Your email"
+        label="Email"
         name="user_email"
         placeholder="Enter your email"
         value={formEmail}

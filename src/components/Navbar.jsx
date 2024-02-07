@@ -19,7 +19,10 @@ const Navbar = ({ activeLink }) => {
     navbar: {
       backgroundColor: darkMode ? "rgb(24, 26, 27)" : "#fff",
       boxShadow: "none",
-      height: "100px",
+      height: {
+        xs: "80px",
+        sm: "100px",
+      },
       display: "flex",
       justifyContent: "center",
     },
@@ -62,7 +65,7 @@ const Navbar = ({ activeLink }) => {
       },
     },
     iconButton: {
-      color: "hsl(0, 0%, 0%)",
+      color: darkMode ? "rgb(232, 230, 227)" : "hsl(0, 0%, 0%)",
       display: {
         sm: "none",
       },

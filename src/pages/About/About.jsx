@@ -81,6 +81,8 @@ const About = () => {
             onChange={(e, value) => setTab(value)}
             aria-label="scrollable auto"
             variant="scrollable"
+            scrollButtons={true}
+            allowScrollButtonsMobile
           >
             <Tab sx={classes.tab} label="Introduction" value="introduction" />
             <Tab

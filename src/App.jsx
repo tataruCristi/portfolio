@@ -7,7 +7,7 @@ import { Contact } from "./pages/Contact/Contact";
 import Footer from "./components/Footer";
 import About from "./pages/About/About";
 import { ActiveLinksContext } from "./ActiveLinksContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DarkModeContext } from "./DarkModeContext";
 
 function App() {
@@ -18,7 +18,10 @@ function App() {
     contact: false,
   });
 
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const initialValue = JSON.parse(localStorage.getItem("darkMode"));
+    return initialValue !== null ? initialValue : false;
+  });
 
   const classes = {
     lightMode: {

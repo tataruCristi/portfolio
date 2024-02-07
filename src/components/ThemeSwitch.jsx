@@ -57,10 +57,15 @@ const DarkModeSwitch = styled(Switch)(() => ({
 const ThemeSwitch = () => {
   const { darkMode, setDarkMode } = useContext(DarkModeContext);
 
+  const handleOnClick = () => {
+    setDarkMode(!darkMode);
+    localStorage.setItem("darkMode", !darkMode);
+  };
+
   return (
     <DarkModeSwitch
       checked={darkMode}
-      onClick={() => setDarkMode(!darkMode)}
+      onClick={handleOnClick}
       sx={{ position: "absolute", right: 10, top: 37.5 }}
     />
   );

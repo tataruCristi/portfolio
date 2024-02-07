@@ -60,8 +60,16 @@ export const Contact = () => {
       fontFamily: "inherit",
       fontWeight: "500",
       marginBottom: "1rem",
-      maxWidth: "400px",
+      maxWidth: {
+        xs: "270px",
+        sm: "250px",
+        md: "300px",
+      },
       margin: "auto",
+      marginTop: {
+        xs: "3rem",
+        sm: 0,
+      },
     },
     cardButton: {
       fontFamily: "inherit",
