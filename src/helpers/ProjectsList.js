@@ -6,7 +6,7 @@ import Calculator from "../assets/tutorial-preview-large.png";
 export const projectsList = [
   {
     name: "Tenzies Game",
-    link: "https://github.com/tataruCristi/Tenzies-Game",
+    link: "https://tatarucristi.github.io/tenzies-game",
     image: Tenzies,
     description: "A simple tenzies game made with react and CSS.",
   },
